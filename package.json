@@ -1,0 +1,18 @@
+{
+  "name": "thescore-qa-automation-assessment",
+  "version": "1.0.0",
+  "description": "An k6 testing script for fetch the top 10 teams and players in a given season in a given sports league",
+  "main": "index.ts",
+  "scripts": {
+    "test": "k6 run index.ts"
+  },
+  "keywords": [
+    "TDD",
+    "k6.io"
+  ],
+  "author": "Shawn Hu",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/k6": "^0.45.0"
+  }
+}
