@@ -2,9 +2,11 @@
   "name": "thescore-qa-automation-assessment",
   "version": "1.0.0",
   "description": "An k6 testing script for fetch the top 10 teams and players in a given season in a given sports league",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "k6 run index.ts"
+    "test": "npm run build && k6 run build/index.js",
+    "lint": "npx eslint .",
+    "build": "rm -rf build && tsc --build && node addJSExtension.js"
   },
   "keywords": [
     "TDD",
@@ -13,6 +15,10 @@
   "author": "Shawn Hu",
   "license": "MIT",
   "devDependencies": {
-    "@types/k6": "^0.45.0"
+    "@types/k6": "^0.45.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.6"
   }
 }
