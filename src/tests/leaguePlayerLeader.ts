@@ -1,12 +1,12 @@
-import { check } from 'k6';
 import type { JSONObject, JSONArray } from 'k6';
 import { getTopScoringPlayers } from '../utils/endpointUtils';
-import { printTable, isNestedListSorted } from '../utils/testUtils';
+import { printTable, isNestedListSorted, createNamedCheck } from '../utils/testUtils';
 
 export default function () {
   const league = __ENV.LEAGUE;
   const season = __ENV.SEASON;
   const response = getTopScoringPlayers(league, season);
+  const check = createNamedCheck('getTopScoringPlayers');
 
   check(response, {
     'response code was 200': (res) => res.status === 200,

@@ -1,3 +1,6 @@
+import { check } from 'k6';
+import { Checkers } from 'k6';
+
 /**
  * converts object into GET request query params
  * @param obj GET request query params
@@ -65,4 +68,22 @@ export function isNestedListSorted(
   }
 
   return true;
+}
+
+/**
+ * given a name, return a function that add the name as a prefix for each of the set in check
+ * @param name name to be prefixed to each of the message in check
+ * @returns a new check function that prefix the provided name in each set message
+ */
+export function createNamedCheck(name: string) {
+  return function namedCheck<T>(val: T, sets: Checkers<T>, tags?: object) {
+    check(
+      val,
+      Object.entries(sets).reduce(
+        (acc, [message, fn]) => ({ ...acc, [`${name}: ${message}`]: fn }),
+        {},
+      ),
+      tags,
+    );
+  };
 }
