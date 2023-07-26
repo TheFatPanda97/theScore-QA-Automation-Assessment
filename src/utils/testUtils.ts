@@ -1,35 +1,68 @@
-import http from 'k6/http';
-import { objectToQueryParams } from './fetchUtils';
-import type { LeagueLeadersParamsType } from '../types/nba';
+/**
+ * converts object into GET request query params
+ * @param obj GET request query params
+ * @returns query params in string format
+ */
+export function objectToQueryParams(obj: Record<string, string>) {
+  if (!obj || Object.keys(obj).length === 0) {
+    return '';
+  }
 
-const BASE_URL = 'https://stats.nba.com/stats';
+  const queryParams = Object.entries(obj)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+    .join('&');
 
-export function getTopScoringPlayers(
-  league: LeagueLeadersParamsType['LeagueID'],
-  season: LeagueLeadersParamsType['Season'],
-) {
-  const params: LeagueLeadersParamsType = {
-    ActiveFlag: 'Y',
-    LeagueID: league,
-    PerMode: 'Totals',
-    Scope: 'S',
-    Season: season,
-    SeasonType: 'Regular Season',
-    StatCategory: 'PTS',
-  };
-  const queryParams = objectToQueryParams(params);
-  const url = `${BASE_URL}/leagueleaders${queryParams}`;
-
-  return http.get(url);
+  return `?${queryParams}`;
 }
 
-// export function getTopScoringTeams(league, season) {
-// const url = `${BASE_URL}/${league}/${season}/standings`;
-// const params = {
-//   headers: {
-//     'X-Auth-Token': API_KEY,
-//   },
-// };
-// const response = http.get(url, params);
-// return JSON.parse(response.body).standings[0].table;
-// }
+/**
+ * given the title and a list of data, print the values in a table format in the console
+ * @param title title of the table
+ * @param data data of the table
+ */
+export function printTable(title: string, data: string[][]) {
+  let table = `\n${title}\n`;
+
+  for (let i = 0; i < title.length; i++) {
+    table += '-';
+  }
+
+  table += '\n';
+
+  data.forEach((row) => {
+    table += `${row.join(' | ')}\n`;
+  });
+
+  table += '\n';
+
+  console.log(table);
+}
+
+/**
+ * given nested lists, index and direction, return if the list is sorted by the index in direction order.
+ * Eg.
+ * `isNestedListSorted([[1, 223], [2, 43]], 0, 'asc')` returns true
+ * `isNestedListSorted([[1, 223], [2, 43]], 1, 'asc')` returns false
+ * @param list nested list of strings of numbers
+ * @param columnIndex index of the value to check for in nested list
+ * @param direction direction to check if the list is sorted
+ * @returns if the list is sorted by the index in direction order
+ */
+export function isNestedListSorted(
+  list: (number | string)[][],
+  index: number,
+  direction: 'asc' | 'dsc' = 'asc',
+) {
+  const compareFn =
+    direction === 'asc'
+      ? (a: number | string, b: number | string) => a < b
+      : (a: number | string, b: number | string) => a > b;
+
+  for (let i = 1; i < list.length; i++) {
+    if (compareFn(list[i][index], list[i - 1][index])) {
+      return false;
+    }
+  }
+
+  return true;
+}
