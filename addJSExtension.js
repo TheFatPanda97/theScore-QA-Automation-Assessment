@@ -30,7 +30,7 @@ function modifyFilesWithRequireJSExtension(directory) {
             }
 
             const modifiedData = data.replace(
-              /require\("(\.\/[^"]*)"\);/g,
+              /require\("(\.\.?\/[^"]*)"\)/g,
               (_match, capturedGroup) => `require("${capturedGroup}.js")`,
             );
 

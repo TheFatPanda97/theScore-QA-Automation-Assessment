@@ -20,15 +20,7 @@ export function getTopScoringPlayers(
   const queryParams = objectToQueryParams(params);
   const url = `${BASE_URL}/leagueleaders${queryParams}`;
 
-  console.log(url);
-
-  const response = http.get(url);
-
-  if (typeof response.body === 'string') {
-    return JSON.parse(response.body);
-  } else {
-    return {};
-  }
+  return http.get(url);
 }
 
 // export function getTopScoringTeams(league, season) {
