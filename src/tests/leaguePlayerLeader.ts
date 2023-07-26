@@ -1,9 +1,11 @@
-import type { JSONObject, JSONArray } from 'k6';
 import { getTopScoringPlayers } from '../utils/endpointUtils';
 import { printTable, isNestedListSorted, createNamedCheck } from '../utils/testUtils';
 
+import type { JSONObject, JSONArray } from 'k6';
+import type { LeagueLeadersParamsType } from '../types/api';
+
 export default function () {
-  const league = __ENV.LEAGUE;
+  const league = __ENV.LEAGUE as LeagueLeadersParamsType['LeagueID'];
   const season = __ENV.SEASON;
   const response = getTopScoringPlayers(league, season);
   const check = createNamedCheck('getTopScoringPlayers');

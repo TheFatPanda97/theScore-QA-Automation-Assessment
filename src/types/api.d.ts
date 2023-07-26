@@ -1,6 +1,6 @@
 export type LeagueLeadersParamsType = {
   ActiveFlag: 'N' | 'Y';
-  LeagueID: string;
+  LeagueID: '00' | '10' | '20';
   PerMode: 'Totals' | 'PerGame' | 'Per48';
   /** Season, Rookies, Regular Season */
   Scope: 'S' | 'Rookies' | 'RS';
