@@ -126,7 +126,7 @@ Desktop (Mac OS 13.4.1)
 #### Test Result
 
 ```
-Top 10 Players in 2019-20 Season Ordered by Points
+Top 10 Players in the 2019-20 Season Ordered by Points
 --------------------------------------------------
 James Harden | 2335
 Damian Lillard | 1978
@@ -139,7 +139,7 @@ LeBron James | 1698
 Donovan Mitchell | 1655
 Anthony Davis | 1618
 
-Top 10 Teams in 2019-20 Season and Rank Ordered by Points
+Top 10 Teams and their Rank in the 2019-20 Season Ordered by Points
 ---------------------------------------------------------
 7 | Dallas Mavericks | 8776
 1 | Milwaukee Bucks | 8663

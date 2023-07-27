@@ -28,7 +28,7 @@ export default function () {
   check(ptsIndex, { 'the PTS column exists': (res) => res !== -1 });
   check(playerNameIndex, { 'the PLAYER column exists': (res) => res !== -1 });
 
-  const tableTitle = `Top 10 Players in ${season} Season Ordered by Points`;
+  const tableTitle = `Top 10 Players in the ${season} Season Ordered by Points`;
   const topTenIndividuals = (rowSet.splice(0, 10) as JSONArray[]).map((playerInfo) => [
     playerInfo[playerNameIndex],
     playerInfo[ptsIndex],

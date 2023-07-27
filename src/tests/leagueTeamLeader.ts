@@ -80,7 +80,7 @@ export default function () {
       isNestedListSorted(res, teamStandingRankIndex, 'asc'),
   });
 
-  const tableTitle = `Top 10 Teams in ${season} Season and Rank Ordered by Points`;
+  const tableTitle = `Top 10 Teams and their Rank in the ${season} Season Ordered by Points`;
   const tableData = topTenTeams.map(([name, points]) => [teamStandings[name], name, points]);
 
   printTable(tableTitle, tableData);
