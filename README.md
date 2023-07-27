@@ -174,7 +174,7 @@ Top 10 Teams in 2019-20 Season and Rank Ordered by Points
 
 # Test Rational
 
-This test suite is written using a load-testing framework (k6) because it is a simple and effective way to test the NBA stats API. Its ability to be deployed on Kubernetes makes it an extremely scalable solution to perform load-test on the NBA stats API in the future. Within each test, the test suite performs basic assertions such as verifying the response code, response body, and response data. The test suite also performs more complex assertions such as verifying that the top 10 teams are sorted by rank in ascending order. The test suite also prints the resulting table to the console to make it easier to debug and verify the results of the test.
+This test suite is written using a load-testing framework (k6) because it is a simple and effective way to test the NBA stats API. Its ability to be deployed on Kubernetes makes it an extremely scalable solution to perform load-test on the NBA stats API in the future. Within each test, the test suite performs basic assertions such as verifying the response code, response body, and response data. The test suite also performs more complex assertions such as verifying that the top 10 teams and players are sorted by their rank and points respectively since this is the expected behavior of the API. The test suite also prints the resulting table to the console to make it easier to debug and verify the results of the test.
 
 # Test Coverage
 
