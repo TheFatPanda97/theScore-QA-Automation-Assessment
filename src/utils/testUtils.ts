@@ -6,7 +6,7 @@ import { Checkers } from 'k6';
  * @param obj GET request query params
  * @returns query params in string format
  */
-export function objectToQueryParams(obj: Record<string, string>) {
+export function objectToQueryParams(obj: Record<string, string | number>) {
   if (!obj || Object.keys(obj).length === 0) {
     return '';
   }
@@ -23,7 +23,7 @@ export function objectToQueryParams(obj: Record<string, string>) {
  * @param title title of the table
  * @param data data of the table
  */
-export function printTable(title: string, data: string[][]) {
+export function printTable(title: string, data: (string | number)[][]) {
   let table = `\n${title}\n`;
 
   for (let i = 0; i < title.length; i++) {

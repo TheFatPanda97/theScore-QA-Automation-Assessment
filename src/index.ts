@@ -21,11 +21,14 @@ function validateEnvVariables() {
   if (league === '10' && !/^\d{4}$/gm.test(season)) {
     fail('For LeagueID 10, please provide just the beginning year of the season. Eg. 2019');
   }
+
+  if (league !== '10' && !/^\d{4}-\d{2}$/gm.test(season)) {
+    fail('For LeagueID 00 or 20, please provide a season in the form of 2019-20.');
+  }
 }
 
 export default function () {
   validateEnvVariables();
-
   leaguePlayerLeaderTests();
   leagueTeamLeaderTests();
 }

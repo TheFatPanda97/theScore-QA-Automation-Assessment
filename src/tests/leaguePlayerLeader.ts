@@ -7,8 +7,8 @@ import type { LeagueLeadersParamsType } from '../types/api';
 export default function () {
   const league = __ENV.LEAGUE as LeagueLeadersParamsType['LeagueID'];
   const season = __ENV.SEASON;
-  const response = getTopScoringPlayers(league, season);
   const check = createNamedCheck('getTopScoringPlayers');
+  const response = getTopScoringPlayers(league, season);
 
   check(response, {
     'response code was 200': (res) => res.status === 200,
@@ -28,7 +28,7 @@ export default function () {
   check(ptsIndex, { 'the PTS column exists': (res) => res !== -1 });
   check(playerNameIndex, { 'the PLAYER column exists': (res) => res !== -1 });
 
-  const tableTitle = `Top 10 NBA Players in ${season} Season Ranked by Points`;
+  const tableTitle = `Top 10 Players in ${season} Season Ordered by Points`;
   const topTenIndividuals = (rowSet.splice(0, 10) as JSONArray[]).map((playerInfo) => [
     playerInfo[playerNameIndex],
     playerInfo[ptsIndex],
